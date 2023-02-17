@@ -24,6 +24,7 @@ io.on("connection", (socket) => {
   // Send driver's location to user
   if (driverLocation) {
     socket.emit("driverLocation", driverLocation);
+    console.log("Location sent");
   }
 
   socket.on("disconnect", () => {
