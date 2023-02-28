@@ -5,7 +5,7 @@ const socketio = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-
+const interval = 5000;
 // Driver's location data
 let driverLocation = null;
 
@@ -23,8 +23,10 @@ io.on("connection", (socket) => {
 
   // Send driver's location to user
   if (driverLocation) {
-    socket.emit("driverLocation", driverLocation);
-    console.log("Location data sent");
+    setInterval(() => {
+      socket.emit("driverLocation", driverLocation);
+      console.log("Location data sent");
+    }, interval);
   }
 
   socket.on("disconnect", () => {
