@@ -10,7 +10,9 @@ const driverLocations = new Map();
 
 // Driver sends location data to server via HTTP POST request
 app.post("/driver-location", express.json(), (req, res) => {
-  const { driverId, location } = req.body;
+  // const { driverId, location } = req.body;
+  const driverId = req.body.duid;
+  const location = req.body.location;
   driverLocations.set(driverId, location);
   console.log(`Driver ${driverId} location:`, location);
 
